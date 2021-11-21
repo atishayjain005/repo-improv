@@ -33,7 +33,6 @@ export default function Body() {
           variant="contained"
           sx={{ fontSize: 18 }}
         >
-          <Link to="/GitData">Get Started</Link>
           <DoubleArrowIcon />
         </Button>
         <Box></Box>

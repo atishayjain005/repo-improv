@@ -4,6 +4,8 @@ import { getAuth, signInWithPopup, GithubAuthProvider } from "firebase/auth";
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import { useState } from "react";
+import FetchGraphQL from "../../FetchGraphQL";
+import { Navigate } from "react-router";
 
 const TokenState = (props) => {
 
@@ -24,7 +26,7 @@ const TokenState = (props) => {
     const analytics = getAnalytics(app);
 
     const signInAuth = (provider) => {
-        const auth = getAuth();
+        const auth = getAuth(app);
         signInWithPopup(auth, provider)
             .then((result) => {
                 // This gives you a GitHub Access Token. You can use it to access the GitHub API.
@@ -32,7 +34,7 @@ const TokenState = (props) => {
                 const token = credential.accessToken;
                 console.log(token)
                 setTokenValue(token);
-
+ 
                 localStorage.setItem("token", token);
 
                 // The signed-in user info.
@@ -40,6 +42,15 @@ const TokenState = (props) => {
                 console.log(user)
 
                 localStorage.setItem("user", user.displayName);
+                if (user){
+                    setTimeout(()=>{ alert("succesfully logged in");
+                    window.location = '/gitdata'
+                }, 0);
+                    
+                }else{
+                    window.location="/"
+                    
+                }
                 // ...
             }).catch((error) => {
                 // Handle Errors here.
@@ -52,7 +63,6 @@ const TokenState = (props) => {
                 // ...
             });
     }
-
 
 
     return (

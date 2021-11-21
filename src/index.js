@@ -8,13 +8,15 @@ import {
   Route
 } from "react-router-dom";
 import GitData from './route/GitData';
+import Profile from "./route/Profile"
 
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
     <Routes>
       <Route path="/" element={<App />} />
-      <Route path="GitData" element={<GitData />} />\
+      <Route path="gitdata" element={<GitData />} />
+      <Route path="profile" element={<Profile />} />
     </Routes>
     </BrowserRouter>
   </React.StrictMode>,
