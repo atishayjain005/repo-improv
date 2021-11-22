@@ -10,12 +10,12 @@ const TokenState = (props) => {
 
     const firebaseConfig = {
         apiKey: "AIzaSyDPWWVqKEJ6w3ZETTm9qB2BVY0stqOO4NA",
-  authDomain: "oauth-app-3e936.firebaseapp.com",
-  projectId: "oauth-app-3e936",
-  storageBucket: "oauth-app-3e936.appspot.com",
-  messagingSenderId: "855299737848",
-  appId: "1:855299737848:web:c40491641c94fea476d30d",
-  measurementId: "G-TLJR6WTSJP"
+        authDomain: "oauth-app-3e936.firebaseapp.com",
+        projectId: "oauth-app-3e936",
+        storageBucket: "oauth-app-3e936.appspot.com",
+        messagingSenderId: "855299737848",
+        appId: "1:855299737848:web:c40491641c94fea476d30d",
+        measurementId: "G-TLJR6WTSJP"
     };
 
     // Initialize Firebase
