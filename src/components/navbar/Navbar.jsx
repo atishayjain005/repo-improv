@@ -9,9 +9,14 @@ import {
   IconButton,
 } from "@mui/material";
 import GitHubIcon from "@mui/icons-material/GitHub";
+import githubProvider from "../../config/authMethods";
+import { useContext } from "react";
+import TokenContext from "../../context/Token/TokenContext";
 
 
 export default function Navbar() {
+  const validation = useContext(TokenContext);
+
   return (
     <Box>
       <AppBar position="static">
@@ -42,7 +47,7 @@ export default function Navbar() {
               </Typography>
             </Box>
             <Box>
-              <Button size="large" variant="outlined" color="inherit" sx={{fontWeight:700}}>
+              <Button onClick={() => validation.signInAuth(githubProvider)} size="large" variant="outlined" color="inherit" sx={{fontWeight:700}}>
                 Login via GitHub
               </Button>
             </Box>

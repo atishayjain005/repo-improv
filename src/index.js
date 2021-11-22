@@ -7,17 +7,15 @@ import {
   Routes,
   Route
 } from "react-router-dom";
-import GitData from './route/GitData';
-import Profile from "./route/Profile"
+import Home from './route/Home';
 
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
-    <Routes>
-      <Route path="/" element={<App />} />
-      <Route path="gitdata" element={<GitData />} />
-      <Route path="profile" element={<Profile />} />
-    </Routes>
+      <Routes>
+        <Route path="/" element={<App />} />
+        <Route path="home" element={<Home />} />
+      </Routes>
     </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root')

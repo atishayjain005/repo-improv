@@ -1,16 +1,12 @@
-
-/* import { useContext , useState } from 'react'; */
-async function FetchGraphQL(text, variables){  
-  
-
+async function FetchGraphQL(text, variables) {
   const TOKEN = localStorage.getItem("token");
-  console.log(TOKEN)
+  console.log(TOKEN);
   // Fetch data from GitHub's GraphQL API:
-  const response = await fetch('https://api.github.com/graphql', {
-    method: 'POST',
+  const response = await fetch("https://api.github.com/graphql", {
+    method: "POST",
     headers: {
       Authorization: `bearer  ${TOKEN}`,
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
     },
     body: JSON.stringify({
       query: text,

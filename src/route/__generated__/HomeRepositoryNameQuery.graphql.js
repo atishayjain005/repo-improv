@@ -8,10 +8,10 @@
 
 /*::
 import type { ConcreteRequest } from 'relay-runtime';
-export type GitDataRepositoryNameQueryVariables = {|
+export type HomeRepositoryNameQueryVariables = {|
   usr: string
 |};
-export type GitDataRepositoryNameQueryResponse = {|
+export type HomeRepositoryNameQueryResponse = {|
   +user: ?{|
     +repositories: {|
       +nodes: ?$ReadOnlyArray<?{|
@@ -33,19 +33,19 @@ export type GitDataRepositoryNameQueryResponse = {|
     |}
   |}
 |};
-export type GitDataRepositoryNameQuery = {|
-  variables: GitDataRepositoryNameQueryVariables,
-  response: GitDataRepositoryNameQueryResponse,
+export type HomeRepositoryNameQuery = {|
+  variables: HomeRepositoryNameQueryVariables,
+  response: HomeRepositoryNameQueryResponse,
 |};
 */
 
 
 /*
-query GitDataRepositoryNameQuery(
+query HomeRepositoryNameQuery(
   $usr: String!
 ) {
   user(login: $usr) {
-    repositories(first: 10, orderBy: {field: CREATED_AT, direction: DESC}) {
+    repositories(first: 100, orderBy: {field: CREATED_AT, direction: DESC}) {
       nodes {
         name
         description
@@ -88,19 +88,19 @@ v1 = [
 ],
 v2 = {
   "kind": "Literal",
-  "name": "first",
-  "value": 10
+  "name": "orderBy",
+  "value": {
+    "direction": "DESC",
+    "field": "CREATED_AT"
+  }
 },
 v3 = [
-  (v2/*: any*/),
   {
     "kind": "Literal",
-    "name": "orderBy",
-    "value": {
-      "direction": "DESC",
-      "field": "CREATED_AT"
-    }
-  }
+    "name": "first",
+    "value": 100
+  },
+  (v2/*: any*/)
 ],
 v4 = {
   "alias": null,
@@ -116,31 +116,40 @@ v5 = {
   "name": "description",
   "storageKey": null
 },
-v6 = [
+v6 = {
+  "kind": "Literal",
+  "name": "first",
+  "value": 10
+},
+v7 = [
+  (v6/*: any*/)
+],
+v8 = [
+  (v6/*: any*/),
   (v2/*: any*/)
 ],
-v7 = {
+v9 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
   "name": "__typename",
   "storageKey": null
 },
-v8 = {
+v10 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
   "name": "createdAt",
   "storageKey": null
 },
-v9 = {
+v11 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
   "name": "url",
   "storageKey": null
 },
-v10 = {
+v12 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
@@ -152,7 +161,7 @@ return {
     "argumentDefinitions": (v0/*: any*/),
     "kind": "Fragment",
     "metadata": null,
-    "name": "GitDataRepositoryNameQuery",
+    "name": "HomeRepositoryNameQuery",
     "selections": [
       {
         "alias": null,
@@ -182,7 +191,7 @@ return {
                   (v5/*: any*/),
                   {
                     "alias": null,
-                    "args": (v6/*: any*/),
+                    "args": (v7/*: any*/),
                     "concreteType": "RepositoryCollaboratorConnection",
                     "kind": "LinkedField",
                     "name": "collaborators",
@@ -205,7 +214,7 @@ return {
                   },
                   {
                     "alias": null,
-                    "args": (v3/*: any*/),
+                    "args": (v8/*: any*/),
                     "concreteType": "IssueConnection",
                     "kind": "LinkedField",
                     "name": "issues",
@@ -219,20 +228,20 @@ return {
                         "name": "nodes",
                         "plural": true,
                         "selections": [
-                          (v7/*: any*/)
+                          (v9/*: any*/)
                         ],
                         "storageKey": null
                       }
                     ],
                     "storageKey": "issues(first:10,orderBy:{\"direction\":\"DESC\",\"field\":\"CREATED_AT\"})"
                   },
-                  (v8/*: any*/),
-                  (v9/*: any*/)
+                  (v10/*: any*/),
+                  (v11/*: any*/)
                 ],
                 "storageKey": null
               }
             ],
-            "storageKey": "repositories(first:10,orderBy:{\"direction\":\"DESC\",\"field\":\"CREATED_AT\"})"
+            "storageKey": "repositories(first:100,orderBy:{\"direction\":\"DESC\",\"field\":\"CREATED_AT\"})"
           }
         ],
         "storageKey": null
@@ -245,7 +254,7 @@ return {
   "operation": {
     "argumentDefinitions": (v0/*: any*/),
     "kind": "Operation",
-    "name": "GitDataRepositoryNameQuery",
+    "name": "HomeRepositoryNameQuery",
     "selections": [
       {
         "alias": null,
@@ -275,7 +284,7 @@ return {
                   (v5/*: any*/),
                   {
                     "alias": null,
-                    "args": (v6/*: any*/),
+                    "args": (v7/*: any*/),
                     "concreteType": "RepositoryCollaboratorConnection",
                     "kind": "LinkedField",
                     "name": "collaborators",
@@ -290,7 +299,7 @@ return {
                         "plural": true,
                         "selections": [
                           (v4/*: any*/),
-                          (v10/*: any*/)
+                          (v12/*: any*/)
                         ],
                         "storageKey": null
                       }
@@ -299,7 +308,7 @@ return {
                   },
                   {
                     "alias": null,
-                    "args": (v3/*: any*/),
+                    "args": (v8/*: any*/),
                     "concreteType": "IssueConnection",
                     "kind": "LinkedField",
                     "name": "issues",
@@ -313,40 +322,40 @@ return {
                         "name": "nodes",
                         "plural": true,
                         "selections": [
-                          (v7/*: any*/),
-                          (v10/*: any*/)
+                          (v9/*: any*/),
+                          (v12/*: any*/)
                         ],
                         "storageKey": null
                       }
                     ],
                     "storageKey": "issues(first:10,orderBy:{\"direction\":\"DESC\",\"field\":\"CREATED_AT\"})"
                   },
-                  (v8/*: any*/),
-                  (v9/*: any*/),
-                  (v10/*: any*/)
+                  (v10/*: any*/),
+                  (v11/*: any*/),
+                  (v12/*: any*/)
                 ],
                 "storageKey": null
               }
             ],
-            "storageKey": "repositories(first:10,orderBy:{\"direction\":\"DESC\",\"field\":\"CREATED_AT\"})"
+            "storageKey": "repositories(first:100,orderBy:{\"direction\":\"DESC\",\"field\":\"CREATED_AT\"})"
           },
-          (v10/*: any*/)
+          (v12/*: any*/)
         ],
         "storageKey": null
       }
     ]
   },
   "params": {
-    "cacheID": "92992cdd6d4e3241de3eabf5aa61b53e",
+    "cacheID": "b258f42d69128e61871bd13f8cad28f2",
     "id": null,
     "metadata": {},
-    "name": "GitDataRepositoryNameQuery",
+    "name": "HomeRepositoryNameQuery",
     "operationKind": "query",
-    "text": "query GitDataRepositoryNameQuery(\n  $usr: String!\n) {\n  user(login: $usr) {\n    repositories(first: 10, orderBy: {field: CREATED_AT, direction: DESC}) {\n      nodes {\n        name\n        description\n        collaborators(first: 10) {\n          nodes {\n            name\n            id\n          }\n        }\n        issues(first: 10, orderBy: {field: CREATED_AT, direction: DESC}) {\n          nodes {\n            __typename\n            id\n          }\n        }\n        createdAt\n        url\n        id\n      }\n    }\n    id\n  }\n}\n"
+    "text": "query HomeRepositoryNameQuery(\n  $usr: String!\n) {\n  user(login: $usr) {\n    repositories(first: 100, orderBy: {field: CREATED_AT, direction: DESC}) {\n      nodes {\n        name\n        description\n        collaborators(first: 10) {\n          nodes {\n            name\n            id\n          }\n        }\n        issues(first: 10, orderBy: {field: CREATED_AT, direction: DESC}) {\n          nodes {\n            __typename\n            id\n          }\n        }\n        createdAt\n        url\n        id\n      }\n    }\n    id\n  }\n}\n"
   }
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = 'b34b784136892e534550ff497245bd0e';
+(node/*: any*/).hash = '4eefc8a216225692fcb60765fe4c6b4c';
 
 module.exports = node;
